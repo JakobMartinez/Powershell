@@ -119,3 +119,53 @@ hello George
 
 write-host 'hello $var                  '' prints literal
 hello $var
+
+
+
+  FIND COMMANDS
+
+   1 Ensure that you have the latest copy of help by updating your help system.         update-help
+
+   2 Which cmdlets deal with the viewing/manipulating of processes?                     get-process start-process stop-process wait-process
+
+   3 Display a list of services installed on your local computer.                       get-service
+
+   4 What cmdlets are used to write or output objects or text to the screen?            write-host write-output
+
+   5 What cmdlets can be used to create, modify, list, and delete variables?           (create $variable = value) (modify just asign it new value) (list get-varibale) (delete del variable:a)
+    
+   6 What cmdlet can be used, other than Get-Help, to find and list other cmdlets?     get-command
+
+   7 Find the cmdlet that is used to prompt the user for input.                        read-host
+
+
+
+RUNNING COMMANDS
+
+
+   1 Display a list of running processes.     get-process 
+
+   2 Display a list of all running processes that start with the letter "s".       get-process -name "s*"
+
+   3 Find the cmdlet and its purpose for the following aliases:               
+
+        gal        get-alias gets aliases of commands 
+
+        dir       get-childitem     gets items and childitems in one or more location
+
+        echo      write-output    
+
+        ?         where-object
+
+        %         foreach-object
+  
+        ft        format-table 
+
+   4 Display a list of Windows Firewall Rules.
+
+   5 Create a new alias called "gh" for the cmdlet "Get-Help"
+
+
+
+
+
