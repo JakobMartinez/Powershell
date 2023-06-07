@@ -1,0 +1,14 @@
+ARRAY                               list that goes off index value
+(get-process).Gettype()            shows you type of something   this shows its a list of processes
+$prod = get-process
+$prod[4]                      will show line 4 of get-process
+$prod[-1]                   will show last line
+$proc -is [array]    woudl print true bc is array if not would set false
+$proc.count     shows length/count in array how many in there
+
+$array = 1,4,5,6,8
+$array -is [array]          returns true
+$array[0] -is [int]         return true
+$array = 1..25
+($array[3]).Gettype()       gets type of index 3 of list $array
+$arrray[3]                  prints whats at that position
