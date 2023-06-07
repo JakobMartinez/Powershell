@@ -124,16 +124,16 @@ hello $var
 
   FIND COMMANDS
 
-   1 Ensure that you have the latest copy of help by updating your help system.         update-help
+   1 Ensure that you have the latest copy of help by updating your help system.         update-help -Force
 
    2 Which cmdlets deal with the viewing/manipulating of processes?                     get-process start-process stop-process wait-process
 
    3 Display a list of services installed on your local computer.                       get-service
 
-   4 What cmdlets are used to write or output objects or text to the screen?            write-host write-output
+   4 What cmdlets are used to write or output objects or text to the screen?            write-host"more words" write-output"words"
 
-   5 What cmdlets can be used to create, modify, list, and delete variables?           (create $variable = value) (modify just asign it new value) (list get-varibale) (delete del variable:a)
-    
+   5 What cmdlets can be used to create, modify, list, and delete variables?           (create $variable = value) (modify just asign it new value) (list get-varibale) (delete del variable:a) new-variable -name dog -value shepard
+                                                                                       set-varibale -name dog -value shepard
    6 What cmdlet can be used, other than Get-Help, to find and list other cmdlets?     get-command
 
    7 Find the cmdlet that is used to prompt the user for input.                        read-host
@@ -145,27 +145,78 @@ RUNNING COMMANDS
 
    1 Display a list of running processes.     get-process 
 
-   2 Display a list of all running processes that start with the letter "s".       get-process -name "s*"
+   2 Display a list of all running processes that start with the letter "s".       get-process -name "s*"     or tasklist 
 
-   3 Find the cmdlet and its purpose for the following aliases:               
+   3 Find the cmdlet and its purpose for the following aliases:     can do        get-alias gal, dir, echo          
 
-        gal        get-alias gets aliases of commands 
+        gal                                                                         get-alias gets aliases of commands 
 
-        dir       get-childitem     gets items and childitems in one or more location
+        dir       get-childitem                                                     gets items and childitems in one or more location
 
-        echo      write-output    
+        echo      write-output                                                        writes specidied objects to pipeline
 
-        ?         where-object
+        ?         where-object                                                      selects specific object based on proporties
 
-        %         foreach-object
+        %         foreach-object                                                      performs operation for each item in a collection/list
   
-        ft        format-table 
+        ft        format-table                                                        formats output as a table
 
-   4 Display a list of Windows Firewall Rules.
+   4 Display a list of Windows Firewall Rules.                                           GET-Netfirewallrule
 
-   5 Create a new alias called "gh" for the cmdlet "Get-Help"
-
-
+   5 Create a new alias called "gh" for the cmdlet "Get-Help"                           set-alias gh Get-Help
 
 
+VARIABLES 
+
+
+
+    1 Create a variable called "var1" that holds a random number between 25-50.                   $var1 = ($Get-Random -Minimum 25 -Maximum 50) Invoke-Expression $var1 (will make value $var1 random every time with invoke expression)
+
+    2 Create a variable called "var2" that holds a random number between 1-10.                    $var2 = (Get-Random -Minimum 1 -maximum 10) Invoke-Expression $var2
+
+    3 Create a variable called "sum" that holds the sum of var1 and var2.                         $sum = ($var1 + $var2)
+
+    4 Create a variable called "sub" that holds the difference of var1 and var2.                  $sub =($var1 - $var2)
+
+    5 Create a variable called "prod" that holds the product of var1 and var2.                    $prod= ($var1 * $var2)
+    
+    6 Create a variable called "quo" that holds the quotient of var1 and var2.                    $quo = ($var1 / $var2)
+
+    7 Replace the variables in text with their values in the following format:                     
+
+        "var1" + "var2" = "sum"                                                                 "$var1 = $var2 = #sum"
+
+    8 Replace the variables in text with their values in the following format:
+
+        "var1" - "var2" = "sub"                                             "$var1 - $var2 = $sub"
+
+    9 Replace the variables in text with their values in the following format:
+
+        "var1" * "var2" = "prod"                                          "var1 * $var2 = $prod"
+
+    10 Replace the variables in text with their values in the following format:
+
+        "var1" / "var2" = "quo"                                           "$var1 / $var2 = $quo"
+
+
+
+THE PIPELINE 
+
+
+    1 Display the start time of the earliest and latest running processes                                                             
+                                                                                                                                     get-process | sort starttime | select -skip 1 -First 2 -last 1 | format-table processname, starttime
+
+    2 Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
+                                                                                                                                                    get-date | format-table dayofweek 
+                                                                                                                                                    (get-date).DayofWeek
+
+    3 Identify a cmdlet that displays a list of installed hotfixes.
+                                                                                                                                        get-Hotfix
+
+    4 Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
+                                                                                                                                    get-hotfix | sort-object -property Installedon | Format-Table Installedon, hotfixd
+                                                                                                                                    
+    5 Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
+
+                                                                                                                                   get-hotfix | sort-object -property description | Format-table Installedon, hotfix, description
 
