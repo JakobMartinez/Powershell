@@ -1,0 +1,121 @@
+powershell is a part of windows and therefore can operate 
+xfreerdp /u:student /v:10.50.31.214 /dynamic-resolution +glyph-cache +clipboard                    logs into windows vm
+
+powershell comamands start with verb and end with a noun and allow for options vs windows commands can be one word like getproccess or tasklist
+
+
+some commands in powershell have options that are required and some optional 
+get file.txt
+set 
+remove 
+
+get-command shows all commands 
+get-verb gets all verbs possible
+get-command -verb get  shows all the commands stating with get                  get-service  -get-command get-verb
+get-command -Noun service gets commands where the noun part is service          set-service get-service start-service
+                                                                                          
+Get-EventLog -LogName Security                   shows all event logs as security
+
+
+get-scheduledtask                     
+
+user f8 to run a certain line 
+f5 to run whole script 
+
+man page in powershell is Get-Help and then command so
+Get-Help Get-Process 
+Get-Help Get-Process -Full             gives you more 
+
+in examples of options system.string means you put a strong there and if it says system.int wants you to put in interger
+
+
+update-Help -Force -ErrorAction SilentlyContinue                  updates help commands force error action to continue silently
+
+
+
+Get-Help *log*
+ge-help get-eventlog -showwindows             shows it in a window
+Get-Help -Examples get-process              gives examples of get-process
+get-help get-process -online         shows examples online of get-process
+
+
+
+
+in get-help page of command the options i [] are optional also dont need some options as powershell is poistional and will automatically do it
+only for certain commands
+
+if it has -option <string> not optional must put 
+will also tell you in error message missing required parameter
+
+if [ <> ] optional but if you use that option some things may be required
+
+Get-ChildItem -filter *.exe -path C:\Windows -recurse -name    gets all exe files in direcotry in c:\windows recursively by name
+
+
+
+$ALias:dir                gets alias of dir which is get-childitem
+$Alias:ls                 get-childitem as they do same
+Get-Alias -Definition get-childitem         prints all the alias of get-childitem
+set-Alias name settingfor
+set-Alias edit notepad.exe          so when typ edit its really doing notepad.exe
+remove-item alias:edit
+
+get-host                                  gets verison and info
+
+(get-process).processName       gets proccess names use () bc have to use . for proccessName
+(get-process notepad).kill()
+get-process | get-member        shows all the methods of get-process likse the one above
+
+
+get-service | Format-Table Name, Status       formats all the get serivice by property name and shows its status
+
+function fruit-host{ 
+  write-Host "Apple"
+  write-host "orange"
+  write-host "banna"                                                    prints it order you put it
+  write-host "pear"
+  }
+  apple 
+  orange 
+  banna 
+  pear 
+
+
+
+function fruit-output{ 
+  write-output "Apple"
+  write-output "orange"                                       sorts it 
+  write-output "banna"
+  write-output "pear"
+  }
+apple
+banna
+orange 
+pear
+
+
+VARIABLES
+get-variable     shows preset variables 
+$HOME calls home variable which is c:\users\student
+
+$a = 10     to set variable dollar sign comes first       
+                                                          name   value
+get-variable a                gets the info on it          a     10
+
+$a, $b, $c = 5, 6, 4
+test-path variable:a
+true 
+tesst-path variable:b
+false
+
+remove-variable a               removes variable. dont need $ bc that would be calling the vlaue of variable for deletion
+or
+del variable:a
+
+
+$var = "George"
+write-host "hello $var"                   "" prints with variable value 
+hello George
+
+write-host 'hello $var                  '' prints literal
+hello $var
