@@ -12,3 +12,192 @@ $array[0] -is [int]         return true
 $array = 1..25
 ($array[3]).Gettype()       gets type of index 3 of list $array
 $arrray[3]                  prints whats at that position
+
+
+
+
+JAGED ARAYS( nested array)      
+$jagarray = "joe", "jim", "jan", (1('apple', 'pear'),3), "jay"
+$jagarary[0]    joe
+$jagarary[3]    1 
+                 apple 
+                 pear
+                 3
+
+$jagarray[3][1]    apple
+                   pear
+
+$jagarray[3][1][1]   pear
+
+
+$a= 1,2,3
+$a  += @(4,5,6)
+$a     1 2 3 4 5 6 
+
+$a += , @(7,8,9)
+$a      1 2 3 4 5 6 7 8 9
+$a[-1]   7 8 9          bc of the comma in front of it
+
+
+@(0) * 20  will print out 0 20 times in a list
+
+$TARGETARRAY =  @(
+      (35.7219, 51.3345, "Tehran"),
+      (39.99042, 116.4074, "Beijing"),
+      (39.158, 125.9198, "Pyongyang")                                 last one does not need coma
+)     
+   
+
+
+foreach ($line in $targetarray) {
+  if ($line[-1] -eq 'Beijing'){
+      write-output $line
+ }
+}
+
+
+
+
+
+SCRIPTS
+
+
+
+$myblock = { Get-Service | Format-Table name, status}                         
+& $myblock                                                                  & to run script   must call script block with &
+
+
+
+$a = 1 
+$c = { 1+1 }
+
+$a += &$c
+                        $a = 3                                                if you run $a+= &$c again it will be 5 then 7 then 9
+                        
+                        
+                        
+                        
+Get-ChildItem | Sort-Object                           sort alphabetically  
+gci | sort-object -Descending                         sort decscedning alphabeticallyt
+gci | Sort-Object -property Length -Descending        sort by length descending 
+gci | sort Length -Descending                         short hand version of ^
+
+
+        
+                      
+
+
+Get-Service | Group-Object status                               gets all services and groups it based off of status 
+Get-ChildItem | Group-Object {$_.Length -lt 1kb}                gets all dirs/files length of -lt 1kb and groups them 
+
+$_.                       pipeline varibale whatever is in next statement means before the pipeline
+
+
+1, 8, 5 ,3 | sort-object
+1 3 5 8
+'35','8','1', '5' | sort-object
+1
+35
+5
+8
+
+
+1..10 | sort-object -property {get-random} 
+
+
+
+
+SELECT OBJECT           selcts object wants
+get-proccess | select-object -First 10                        gets first 10 processes
+
+get-process | select-object name, id          similar to get-process | format-table name, id
+
+
+get-process | get-member                  gives description of process  shows the objects name type and definition 
+
+get-process | select-object naem, id, description    so dont habe to do get memebr will give you description
+
+
+
+
+
+WHERE OBJECT filtering and outputing results
+
+
+get-service | where-object {$_.status -eq 'running'}
+get-childitem *.txt | where-object {$_.length -lt 100}
+get-process | where {$_.name -like "*powershell*"} | format-table name, Description                                     learn dif between like and match adn when use regex or wildcards
+                                                                                                                                                                                                                                                
+get-process | where {$_.name -eq "*powershell*"} | format-table name, Description       wont work bc -eq has to be exactly same 
+
+
+
+1,2,3,1,2,3,1,2,3,1,2,3 | sort-object | get-unique                                  must sort first only looks one above and below
+1 2 3
+
+
+gci | measure-object -property length                     size 
+(gci).count                                                 how many in there 
+gci | measure-object -property length -average -maximum -minimum -sum        
+
+
+
+COMPARE 
+"i bet you all cant wait to graduate" > text.txt
+$before = Get-childitem
+'4' > test.txt
+$after = gci
+compare-object $before $after -property length, name                  compares what has changed in a file 
+
+
+
+
+CREATIGN AN OBJECT and add info 
+$MyTruck = new-object object 
+#ADD PROPERTY TO AN OBJECT
+add-member -membertype noteproperty -name color -value black -inputobject $Mytruckcreate noteproperty called color give it value black for $mytrcck
+#now can do 
+$mytruck.color
+black
+or 
+$mytruck | get-member           shows the objects name type and definition 
+
+
+
+add-member -me Noteproperty -in $mytruck -na Make -va Ford              short hand veriosn of ^ but adds differntt value  
+$mytruck | get memebr         shows the objects name type and definition 
+$Mytruck | add-member noteproperty -name model -value F150
+
+
+ADD METHOD TO AN OBJECT 
+add-member -membertype Scriptmethod -Inputobject $mytruck -name Drive -value { "going on a road trip" }
+$MYtruck | add-member scriptedmethod -name park -value { "fidning a spot" }
+
+$mytruck.park()
+findign a spot
+
+#PSCustomObject
+$Soldier = [PSCustomObject]@{
+  "Firstname" = "joe"
+  "Lastname" = "snuffy"
+  "MilitaryRAnk" = "ssg"
+  "MOS" = "17c"
+  "position" = "host "aalyst"
+$soldier
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
