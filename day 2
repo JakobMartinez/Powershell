@@ -14,6 +14,18 @@ $array = 1..25
 $arrray[3]                  prints whats at that position
 
 
+1. Create an array containing a range with a random starting and stopping point. The starting point will be a random number from -10 through 0. The ending point will be a random number from 1 through 20.
+$startpoint = (Get-Random -Minimum -10 -Maximum 0 )
+$endpoint = (Get-Random -Minimum 1 -Maximum 20) 
+$array = ($startpoint) .. $endpoint
+
+
+
+2. Create a variable that contains the contents of the array in reverse
+ 
+
+
+
 
 
 JAGED ARAYS( nested array)      
@@ -164,6 +176,50 @@ $mytruck | get-member           shows the objects name type and definition
 
 
 
+
+
+Create a custom object that contains information about the host system using the following:
+
+    Win32_ComputerSystem
+
+    Win32_BIOS
+
+    Win32_OperatingSystem
+
+    Win32_LogicalDisk
+    se the cmdlet Get-WmiObject to obtain the needed information
+    
+    
+    
+    
+    
+$compinfo = Get-WmiObject win32_computersystem
+$osinfo = Get-WmiObject win32_operatingsystem
+$biosinfo = Get-WmiObject win32_BIOS
+$diskinfo = Get-WmiObject win32_LogicalDisk
+
+$myobject= New-Object psobject 
+
+$myobject | Add-Member -MemberType NoteProperty -Name Computername -Value $compinfo.Name
+$myobject | Add-Member -MemberType NoteProperty -Name OperatingSystem -Value $osinfo.Caption
+$myobject | Add-Member -MemberType NoteProperty -Name Version -Value $osinfo.version
+$myobject | Add-Member -MemberType NoteProperty -Name Manufacturer -Value $biosinfo.Manufacturer
+$myobject | Add-Member -MemberType NoteProperty -Name Disks -Value $diskinfo._path
+    
+    
+    
+    
+    
+
+ps providers let you do stuff cant do with interface
+
+make a ps drive
+New-PSDrive -name HKU -psprovider registry -root HKEY_USERS
+
+New-PSDrive -name Z -PSProvider FileSystem -Root \\live.sysinternals.com\tools
+start-service -name WebClient
+
+
 add-member -me Noteproperty -in $mytruck -na Make -va Ford              short hand veriosn of ^ but adds differntt value  
 $mytruck | get memebr         shows the objects name type and definition 
 $Mytruck | add-member noteproperty -name model -value F150
@@ -187,17 +243,187 @@ $soldier
 
 
 
+-eq -lt -gt (match regex use match )(match not regex use not match) (like or not like for *) -ge -le
+
+
+
+2 -eq 2 true 
+2 -eq 3 false
+1,2,3 -eq 2     2
+"abc" -eq "abc" true
+"abc" -eq "abc", "def"  false
+"abc", "def" = "abc"   abc
+  
+  
+  
+  
+  "powershell" -like "*shell"
+  true
+  
+"Powershell", "server" -like "*shell"
+powersjhell
+
+$fruit = 'apple', 'orange', 'pear', 'tomato'
+$fruit -contains 'tomato'
+true
+
+
+"pinky" -notlike "[A-F]inky"
+True
 
 
 
 
 
+#combo  comapre
+$num = 5
+(($num -gt 1) -and ($num -lt 10))
+true
+(($num -gt 1) -or ($num -lt 
+
+
+#IF stateements
+$x=11
+if($x -gt 10) {"$x is larger than 10"}
+
+11 is larger than 10
+
+
+$x=8
+if($x -le 9){
+  write-host "$x is not equal to 9" -ForegroundColor Gray
+  }
+  
+  
+  #IF else
+  if("ABC" -eq "ABC"){
+      write-host "Example 1 - condition satisfied" -ForegroundColor Green
+   }
+  else { 
+      write-host "Example 1 - condition not satisfied" -ForegroundCOlor Red
+   }
+   
+   
+   
+   #switch 
+   $fruit = "C"
+   switch($fruit) { 
+    a{"apple"}
+    b{"banna"}
+    c["cranvberry"}
+    }
+    cranberry
+      
+      
+
+
+
+
+#for each loop
+$nums  = 1, 2, 3, 4, 5
+$nums | foreach-object {$_ *2}
 
 
 
 
 
+$list = 'a', 'b', 'c'                     
+$list | foreach {$_.ToUpper()}
+A B C 
+
+
+Get-Childitem | Foreach-Object {$_.length / 1kb}
+
+
+if dont want to use pipeline just put for each
+
+Foreach ($item in gci c:\ -recurse){$item.name}
+
+foreach($number in 1..5){$number * 2}
+
+#foreach array
+$teams = "Tiger", "Pistons" , "Red Wings", "Lions:"
+foreach ($team in $teams) {"Detroit $team"}
 
 
 
+
+#WHILE LOOPS
+$num  = 0
+while($num -lt 3) { 
+    $num
+    $num++
+ }
+ 
+ 
+ 
+ $num = 0 
+ do {
+ $num 
+ $num++
+} while($num -lt 3)
+
+
+
+#do until
+$num = 0
+do{
+  $num
+  $num++
+}until($num -gt 3)
+
+
+
+#FOR LOOPS
+for($num -eq 1; $num -le 3; num ++){$num}
+
+for($i=0; $i -le 255; $i++){
+  write-host 192.168.0.$i
+}
+
+
+
+#read and write to a file 
+set-content -path .\example.txt -value "A String"
+"a new string" > .\example.txt
+
+"another string' >> .\example.txt
+Add-content -path .\example.txt -value "another one"
+Add-content -path .\example.txt "another one"
+
+
+get-content .\example or cat .\example.txt
+
+
+
+
+
+'"Odoyle Rules"' > Odoyle-script.ps1
+.\odoyle-script.ps1
+
+
+
+
+@'                                                                                not on test 
+"Odoyle Rules!'
+"more code"
+get-service
+get-childitem
+'@  > Anotherdoyle-script.ps1
+.\Anotehrdoyle-script.ps1
+
+
+
+
+
+#hashtables
+$mylist  = @{first = "JOhn"; Last = "doe "; Mid = "Bon"; age = 35}
+$mylist
+$mylist.Last
+$mylist["Last"]
+$mylist.keys
+$mykeys.values
+
+
+$lsit = @{element1= 5; array1= 1..5; array2 = 6,7,8}
 
