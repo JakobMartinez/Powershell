@@ -1,0 +1,68 @@
+half given functions and will habe to type out commands must save ps1 and run executable.\exam.exe grades if something says return put return at end and will get 5 points
+
+function q($var1,$var2,$var3)
+{
+#retrun the sum of the argumetns
+  return $var1+$var2+$var3+$var4
+}
+
+
+function q($file,$line) {
+# return line of text from file fiven the $file. Begins with text specified $line. If no live begins with $start return $null
+$content = get-content $file 
+foreach ( $item in $content) {
+  if ($item.strartswith($line))  {
+  return $item
+  }
+}
+
+
+function q($arr) { 
+# combine $arr into a string seperated by '/' between each element and return the sring
+retrun $arr -join('/')
+}
+
+
+function q() {
+  #return proceeses sorted descendign by processName
+  return Get-process | sort-object -Property name -Descending 
+}  
+  
+  function q($arr,$rows,$cols,$key) {
+    # search array for occurance of $key at column index 0 and return value at colum index 9 of same row. Return -1 if the key is not found
+    
+   foreach ($item in $arr) {
+    if ($i[0] -eq $key) {
+      return $i[9] 
+    } 
+  }
+  return -1 
+} 
+ 
+ provided on the pipeline? wants advanced pipe line 
+ begin
+ process
+ end
+ 
+ 
+ 
+ 
+
+#retrun date in specific -uformat
+$fmt = '%Y%m%d'
+return get-date -UFormat $fmt
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
