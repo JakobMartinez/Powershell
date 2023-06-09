@@ -1,1 +1,56 @@
+STRING MANIPULATION
+"text `"quotation marks`""                `"   `" lets you use special characters in your text ` is the symbol with tilda next to #1
+text "quotation marks"
+
+or 'text "quotation marks"'
+prints same a ^
+
+
+
+$text = "one terabyte is $(1TB / 1GB) Gigabytes"                      does the math bc not literal ""            literals are ''
+$text
+One terabyte is 1024 gigabytes
+ 
+ `nline lets you put newline in strings no space next to where you want it
+ 
+ 
+ 
+ 
+ HERE-STRINGS
+ text=@"
+ Here is soem text with `"quotes`".
+ 1TB equals$(1TB / 1GB) GB.
+ Varibale are resolved 
+ "$PWD" is your curent path
+ "@
+ 
+here-strings  will print it out for you with math done and with variables substitued with their values
+
+
+
+index : what doing -f what changing 
+"{0:n3}" -f 123.45678
+what want to do to it -f original stirng 
+123.457    rounds
+
+"{0:d5}" -f 1 
+00001
+"{0:d5}" -f 25                      pads
+00025
+
+get-service | select-object -First 10 | ForEach-Object{"The Service {0} is call '{1}': {2]" -f $_.Name, $_.Displayname, $_.Staus}
+
+
+
+
+"Hello John"' -replace "John", "World"
+
+"Hello Johnanthom"' -replace "John", "World"
+Hello Worldnanthon
+
+
+'server,server2,server3 -replace '[,]', ';
+
+
+     
 
