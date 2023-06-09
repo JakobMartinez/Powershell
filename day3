@@ -1,3 +1,5 @@
+under the wire website
+https://git.cybbh.space/programming/powershell/public
 STRING MANIPULATION
 "text `"quotation marks`""                `"   `" lets you use special characters in your text ` is the symbol with tilda next to #1
 text "quotation marks"
@@ -52,5 +54,145 @@ Hello Worldnanthon
 'server,server2,server3 -replace '[,]', ';
 
 
+(qprocess) -replace '\s{2,}',',' | select - First 10
+
+
+'192.168.0.1' -replace $pattern, 'computer$1'
+
+$list= 'comp1','comp10','comp13'
+$pattern = 'comp(\d{1,3})'
+$list -replace $pattern, 'computer$1'
+
+$list -replace $pattern, 'computer$1 (This changed from $0)'
+
      
+SPLITTING
+$profile -split '\.'    split it at each period will put them in new lines
+
+$profile -split '(?=\.)'    <---  look ahead not important 
+
+
+'GetHostByName' -csplit '(?<=[a-z])(?=[A-Z])'
+
+
+
+JOIN 
+"cat","dog" -join ""
+catdog
+$env:username, '@', $env:computername, ".", $env:userdomain -join ""
+
+"Powershell is Awesome!" -match "\w+(\?|!)"
+
+$mathces[0]     shows matches
+
+
+
+"10.123.0.22" -as [ipaddress] -as [bool]             determines if ipaddress if bool returns true it is an ip address one way instead of regex
+
+
+
+
+
+
+
+ FUNCTIOSN  run like commandlets         To run it just type name of it
+ function test-it {
+    'Hello World!'
+    }
+
+
+
+
+function test-me($value) {
+    if ($value) {
+        Write-host -ForegroundColor Green "True"
+        }
+    else {
+        write-host -ForegroundColor Red "False"
+        }
+}
+ 
+
+
+
+ function Add-TwoNumbers
+{
+Param ([int]$a,
+        [int]$b)
+
+        $a + $b
+}
+ 
+ 
+ 
+ 
+ function test-me {
+    param( 
+            [parameter(mandatory=$true)]
+             $var
+        )
+        "Your name is $var"
+    }
+ 
+ 
+ 
+ 
+ [parameter(paramtersetname= '', mandatory =$true)]
+ 
+ 
+ 
+ function Add-soldier{
+  [cmdletBinding()]
+  param (
+  [parameter(Mandatory=$True)][string]$Firstname,
+  
+  [parameter(Mandatory=$True)][string]$Lastname,
+  [parameter(Mandatory=$True)][string]$Rank,
+  [parameter(Mandatory=$True)][string]MOS,
+ )
+   $Soldier = [PSCustomObject]@{
+       "Firstname" = $Firstname
+       "Lastname" = $Lastname
+       "Rank" = $Rank
+       "MOS" = $MOS
+}
+
+
+
+
+function add-nums 
+ param(
+   [Parameter(Mandatory=$True)]
+   $var1
+   [Parameter(Mandatory=$True)]
+   $var2
+)
+Begin {
+    $sum = 0
+ }
+ Process {
+    $sum = $var1 + $var2 
+ }
+ End  {
+    $sum
+      }
+}
+
+
+
+
+
+
+GET INFO 
+
+wmi
+cim                newer more common
+
+
+
+Get-wmiobject -query "SELECT * FROM win32_NetwrokAdapterCOnfiguration WhERE IpEnabled = True"
+
+Get-CimInstance -query 'SELECT * FROM win32_NetworkAdapterConfiguration WHERE IpEnabled = True"
+
+
 
