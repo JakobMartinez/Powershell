@@ -1,1 +1,264 @@
    
+Comparison and condition 
+
+   1. Find and extract the model number from the provided lines of text. If there isn’t a model number then display to the user that a model number wasn’t found
+
+    Check both lines for model numbers and report individually the line and model number if found.
+    
+    
+
+    Must use at least ONE comparison operator
+
+    Must use at least ONE If Condition OR Switch Statement
+
+
+
+Use the following variables for your script
+
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
+$pattern = '[A-Za-z]{2}\d{2,5}'
+
+$line1,$line2 | foreach-object {
+   if ($_ -match $patttern){                                                  
+      write-host $matches[0]": $_"                                                                 $mtch is a given variable in powwershel lwith a hashtable
+      }
+   else{ 
+       write-host "No matches found on: $_"
+ }
+  
+   
+
+    Part 1
+
+        Use an array to iterate and open the following
+
+            Notepad
+
+            MS Edge
+
+            MSpaint
+
+        Query the processes
+
+        Kill the processes from PowerShell
+        
+        
+        
+        
+        
+        $proc = "notepad.exe", "msedge", "mspaint"
+        
+        $procs | Foreach-Object {start-process $_}              or     foreach ($item in $procs) {Start-Process $item ; Stop-Process -id (ps $item).id}
+        get-process
+        $file = "pwd\procs.txt"
+        
+        foreach($proc in $procs){
+         get-process | Where-object{$_.Name -like $proc} |
+            Foreach-object{Add-Content $file $_.Id}
+            
+            
+        
+        
+        get-content .\procs.txt | ForEach-Object{Stop-process -id $_}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    Part 2
+
+        Use an array to iterate and open the following
+
+            Notepad
+
+            MS Edge
+
+            MSpaint
+
+        Query the processes
+
+        Save the ProcessIDs to a text file called procs.txt
+
+        Iterate through the ProcessIDs in the text file and kill them
+        
+        
+        
+        
+        
+        $file ='$pwd\procs.txt"
+        
+        foreach($proc in $procs){
+         get-process | Where-object{$_.Name -like $proc}
+            Format-table -property id, name, stattime, totalprocessortime,
+            VirtualMemorySize, WorkingSet64 }
+            
+       foreach($proc in $procs){
+         get-process | where-pbject{_.Name -like $proc} |
+         foreach-object{Add-Content $file $_.Id}
+         
+         
+        
+
+    Part 3
+
+        Use an array to iterate and open the following
+
+            Notepad
+
+            MS Edge
+
+            MSpaint
+
+        Query the processes and display only the following information in order by process ID
+
+            Process ID
+
+            Process Name
+
+            The time the process started
+
+            The amount of time the process has spent on the processor
+
+            The amount of memory assigned to the process
+
+This page was built using a slightly modified version of the Antora default UI.
+The source code for this UI is licensed under the terms of the MPL-2.0 license and can be found at https://git.cybbh.space/common/contributing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hashtables
+
+Practical Exercise: Arrays & Hash Tables
+
+Create two empty hash tables with the following names:
+
+    employee1
+
+    employee2
+
+Using the following table of key-value pairs, apply each key-value to the empty hash tables.
+Table 1. keys and values First 	Last 	ID 	Job
+
+Mary
+	
+
+Hopper
+	
+
+001
+	
+
+Software Developer
+
+John
+	
+
+Williams
+	
+
+002
+	
+
+Web Developer
+	
+
+The keys on the first row of the table while the values are on the first column of the table
+
+Now add a new key called Username which holds a contraction of the employee’s first initial then last name then ID. (i.e. mhopper001).
+
+Mary got promoted to "Software Lead" so the job key for Mary needs to be changed to "Software Lead"
+
+Create a new hash table called "employee3" that contains the following values with the respective keys.
+Table 2. employee3 First 	Last 	ID 	Job
+
+Alex
+	
+
+Moran
+	
+
+003
+	
+
+Software Developer
+
+Add a new key called "Status" that holds the values:
+Table 3. Status Mary 	John 	Alex
+
+Management
+	
+
+Intermediate
+	
+
+Entry Level
+	
+
+Make sure you use both dot notation and square brackets to manipulate your hash tables.
+
+This page was built using a slightly modified version of the Antora default UI.
+
+
+
+
+
+$employee1 = [ordered]@{First = "Mary"; Last = "Hopper"; ID = 001; Job = "Software Developer"}
+#$employee2 = [ordered]@{First = "John"; Last = "Williams"; ID = 002; Job = "Web Developer"}
+#$employee1 + [ordered]@{ Username = "MHopper001"}
+#$employee2 + [ordered]@{ USername = "JWilliams002"}
+
+$employee1.Job= "Software Lead"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
