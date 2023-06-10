@@ -117,7 +117,7 @@ $var = "George"
 write-host "hello $var"                   "" prints with variable value 
 hello George
 
-write-host 'hello $var                  '' prints literal
+write-host 'hello $var'                 '' prints literal
 hello $var
 
 
@@ -184,7 +184,7 @@ VARIABLES
 
     7 Replace the variables in text with their values in the following format:                     
 
-        "var1" + "var2" = "sum"                                                                 "$var1 = $var2 = #sum"
+        "var1" + "var2" = "sum"                                                                 "$var1 + $var2 = $sum"
 
     8 Replace the variables in text with their values in the following format:
 
@@ -200,11 +200,11 @@ VARIABLES
 
 
 
-THE PIPELINE 
+THE PIPELINE (when question says display usually meand for these atleast format-table)
 
 
     1 Display the start time of the earliest and latest running processes                                                             
-                                                                                                                                     get-process | sort starttime | select -skip 1 -First 2 -last 1 | format-table processname, starttime
+                                                                                                get-process | sort starttime | select -skip 1 -First 2 -last 1 | format-table processname, starttime
 
     2 Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
                                                                                                                                                     get-date | format-table dayofweek 
@@ -218,5 +218,5 @@ THE PIPELINE
                                                                                                                                     
     5 Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
 
-                                                                                                                                   get-hotfix | sort-object -property description | Format-table Installedon, hotfix, description
+                                                                                                                  get-hotfix | sort-object -property description | Format-table Installedon, hotfix, description
 
