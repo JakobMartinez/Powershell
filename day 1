@@ -72,8 +72,8 @@ get-service | Format-Table Name, Status       formats all the get serivice by pr
 function fruit-host{ 
   write-Host "Apple"
   write-host "orange"
-  write-host "banna"                                                    prints it order you put it
-  write-host "pear"
+  write-host "banna"                                                    prints it order you put it does not let you store as variabel 
+  write-host "pear"                                                   cna color and console only 
   }
   apple 
   orange 
@@ -84,8 +84,8 @@ function fruit-host{
 
 function fruit-output{ 
   write-output "Apple"
-  write-output "orange"                                       sorts it 
-  write-output "banna"
+  write-output "orange"                                       sorts it allows you to store as variable 
+  write-output "banna"                                        bettwer for script
   write-output "pear"
   }
 apple
